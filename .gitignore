@@ -1,0 +1,33 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore logs
+logs
+*.log
+
+# Ignore environment variables file
+.env
+
+# Ignore npm debug log
+npm-debug.log*
+
+# Ignore macOS metadata files
+.DS_Store
+
+# Ignore user-specific files
+.idea/
+.vscode/
+
+# Ignore local configuration
+/config/local.json
+
+# Ignore package-lock.json
+package-lock.json
+
+# Ignore Jest coverage directory
+/coverage
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
