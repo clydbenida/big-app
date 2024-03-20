@@ -8,6 +8,9 @@ logs
 # Ignore environment variables file
 .env
 
+# Ignore DB config
+src/config/db/config.json
+
 # Ignore npm debug log
 npm-debug.log*
 
