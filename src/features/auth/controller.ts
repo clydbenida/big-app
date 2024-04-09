@@ -37,12 +37,13 @@ class AuthControllerClass {
 
       const resp = await AuthService.loginUser(loginBody);
 
-      sendTemplate(res, {
-        code: 200,
-        data: resp,
-        message: "Successfully logged in!",
-      });
+      res
+      .cookie('refreshToken', resp.refreshToken, { httpOnly: true, sameSite: 'strict' })
+      .header('Authorization', resp.accessToken)
+      .send({accessToken: resp.accessToken});
+
     } catch (err) {
+      console.log(err)
       sendTemplate(res, {
         code: 500,
         data: err,
