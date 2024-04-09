@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken';
 
 import { CreateUserType } from "../../models/User";
 import AuthRepository from "./repository";
@@ -40,7 +41,12 @@ class AuthServiceClass {
     if (!isPasswordCorrect) {
       throw new Error("Password is incorrect");
     }
-    return userDetails;
+
+    const accessToken = jwt.sign({ userDetails }, process.env.APP_SECRET!, { expiresIn: '1h'});
+    const refreshToken = jwt.sign({ userDetails }, process.env.APP_SECRET!, { expiresIn: '1d'});
+
+    
+    return {accessToken, refreshToken, userDetails};
   }
 }
 

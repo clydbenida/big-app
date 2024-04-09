@@ -6,7 +6,6 @@ import { gracefulShutdown, testConnection } from "./src/config/db";
 dotenv.config();
 
 const app = express();
-
 app.use(express.json());
 
 // API Routes
@@ -17,6 +16,7 @@ process.on("SIGINT", gracefulShutdown);
 process.on("SIGTERM", gracefulShutdown);
 
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, async () => {
   await testConnection();
   console.log(`Listening on PORT: ${PORT}`);
