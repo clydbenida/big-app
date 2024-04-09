@@ -35,12 +35,13 @@ class AuthControllerClass {
         password: req.body.password,
       };
 
-      const {accessToken, refreshToken, userDetails } = await AuthService.loginUser(loginBody);
+      const {accessToken, refreshToken } = await AuthService.loginUser(loginBody);
 
       res
-        .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
-        .header('Authorization', accessToken)
-        .send(userDetails);
+      .cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'strict' })
+      .header('Authorization', accessToken)
+      .send({accessToken: accessToken});
+
     } catch (err) {
       console.log(err)
       sendTemplate(res, {
