@@ -44,7 +44,7 @@ async function migrateDown(queryInterface: QueryInterface) {
   const transaction = await queryInterface.sequelize.transaction();
 
   try {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("sellers");
     await transaction.commit();
   } catch (err) {
     await transaction.rollback();
